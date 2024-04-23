@@ -31,27 +31,22 @@ const getHumanChoice = () =>{
 
 const gameCheck = (playerChoice, computerChoice) =>{
 	if(playerChoice === "rock" && computerChoice === "scissors"){
-		alert(`The Computer Chose ${computerChoice}`);
-		alert("You Win!");
+		alert(`You Chose ${playerChoice}\nThe Computer Chose ${computerChoice}\nYou Win!`);
 		playerScore++;
 		playAgain();
 	}else if(playerChoice === "paper" && computerChoice === "rock"){
-		alert(`The Computer Chose ${computerChoice}`);
-		alert("You Win!");
+		alert(`You Chose ${playerChoice}\nThe Computer Chose ${computerChoice}\nYou Win!`);
 		playerScore++;
 		playAgain();
 	}else if(playerChoice === "scissors" && computerChoice === "paper"){
-		alert(`The Computer Chose ${computerChoice}`);
-		alert("You Win!");
+		alert(`You Chose ${playerChoice}\nThe Computer Chose ${computerChoice}\nYou Win!`);
 		playerScore++;
 		playAgain();
 	}else if( playerChoice == computerChoice){
-		alert(`The Computer Chose ${computerChoice}`);
-		alert("Tie!");
+		alert(`You Chose ${playerChoice}\nThe Computer Chose ${computerChoice}\nTie!`);
 		playAgain();
 	}else{
-		alert(`The Computer Chose ${computerChoice}`);
-		alert("You Lose!");
+		alert(`You Chose ${playerChoice}\nThe Computer Chose ${computerChoice}\nYou Lose!`);
 		computerScore++;
 		playAgain();
 	}
@@ -59,8 +54,7 @@ const gameCheck = (playerChoice, computerChoice) =>{
 
 
 const playAgain = () => {
-	alert(`Your Score: ${playerScore} Computer Score: ${computerScore}`);
-	const conformation = confirm("Would you like to play again?");
+	const conformation = confirm(`Your Score: ${playerScore} Computer Score: ${computerScore}\nWould you like to play again?`);
 	if (conformation){
 		getHumanChoice();
 	}else{
@@ -70,12 +64,16 @@ const playAgain = () => {
 
 const result = (playerNum, computerNum) =>{
 	if(playerNum > computerNum){
-		alert("YOU WIN THE GAME, YOU BEAT THE MATRIX");
+		alert("YOU WIN THE GAME!\nYOU BEAT THE MATRIX");
+	}else if( playerNum === computerNum){
+		alert("A TIE!!!")
 	}else{
-		alert("YOU LOSE THE GAME!!!!")
+		alert("YOU LOSE THE GAME!\nTHE MATRIX WON");
 	}
 };
 
 playButton.addEventListener('click', ()=>{
+	playerScore = 0;
+	computerScore =0;
 	getHumanChoice();
 });
