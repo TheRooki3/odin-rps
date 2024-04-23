@@ -1,6 +1,6 @@
 let playerScore = 0;
-
-
+let computerScore = 0;
+const playButton = document.getElementById("play");
 
 const getComputerChoice = () =>{
 	const randomNum = Math.round(Math.random() * 2) + 1;
@@ -18,9 +18,6 @@ const getComputerChoice = () =>{
 			return "try again";
 	}
 };
-
-console.log(getComputerChoice());
-
 const getHumanChoice = () =>{
 	let choice = prompt("Enter Rock, Paper, or Scissors").toLowerCase();
 	console.log(choice);
@@ -28,7 +25,7 @@ const getHumanChoice = () =>{
 		gameCheck(choice,getComputerChoice());
 	}else{
 		alert("Invalid Input");
-		choice = prompt("Enter Rock, Paper, or Scissors").toLowerCase();
+		getHumanChoice();
 	}
 };
 
@@ -36,22 +33,49 @@ const gameCheck = (playerChoice, computerChoice) =>{
 	if(playerChoice === "rock" && computerChoice === "scissors"){
 		alert(`The Computer Chose ${computerChoice}`);
 		alert("You Win!");
-		playerScore ++;
+		playerScore++;
+		playAgain();
 	}else if(playerChoice === "paper" && computerChoice === "rock"){
 		alert(`The Computer Chose ${computerChoice}`);
 		alert("You Win!");
-		playerScore ++;
+		playerScore++;
+		playAgain();
 	}else if(playerChoice === "scissors" && computerChoice === "paper"){
 		alert(`The Computer Chose ${computerChoice}`);
 		alert("You Win!");
-		playerScore ++;
+		playerScore++;
+		playAgain();
 	}else if( playerChoice == computerChoice){
 		alert(`The Computer Chose ${computerChoice}`);
 		alert("Tie!");
+		playAgain();
 	}else{
 		alert(`The Computer Chose ${computerChoice}`);
 		alert("You Lose!");
+		computerScore++;
+		playAgain();
+	}
+}
+
+
+const playAgain = () => {
+	alert(`Your Score: ${playerScore} Computer Score: ${computerScore}`);
+	const conformation = confirm("Would you like to play again?");
+	if (conformation){
+		getHumanChoice();
+	}else{
+		result(playerScore, computerScore);
 	}
 };
 
-getHumanChoice();
+const result = (playerNum, computerNum) =>{
+	if(playerNum > computerNum){
+		alert("YOU WIN THE GAME, YOU BEAT THE MATRIX");
+	}else{
+		alert("YOU LOSE THE GAME!!!!")
+	}
+};
+
+playButton.addEventListener('click', ()=>{
+	getHumanChoice();
+});
